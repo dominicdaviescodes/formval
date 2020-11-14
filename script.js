@@ -33,33 +33,34 @@ function isValidEmail(email) {
   return re.test(String(email).toLowerCase());
 }
 
+// check required fields by passing in an array
+// loop through array checking each one
+// user higher order array method instead of a for loop
+// trim takes out whitespace
+function checkRequired(inputArr) {
+  inputArr.forEach(function (input) {
+    // console.log(input.id);
+    if (input.value.trim() === '') {
+      showError(input, `${getFieldName(input)} is required`);
+    } else {
+      showSuccess(input);
+    }
+  });
+}
+
+// Get fieldname and capitalize 1st letter
+// take 1st letter make uppercase then add it to the word minus the 1st letter
+
+function getFieldName(input) {
+  return input.id.charAt(0).toUpperCase() + input.id.slice(1);
+}
+
 // Event Listeners
 
 // submit functionality - listen for submit, run function
 form.addEventListener('submit', function (e) {
   // stop submitting
   e.preventDefault();
-  if (username.value === '') {
-    showError(username, 'Username is required');
-  } else {
-    showSuccess(username);
-  }
-  if (email.value === '') {
-    showError(email, 'Email is required');
-  } else if(!isValidEmail(email.value)) {
-    showError(email, 'Email is not valid');
-  }
-  else {
-    showSuccess(email);
-  }
-  if (password.value === '') {
-    showError(password, 'Password is required');
-  } else {
-    showSuccess(password);
-  }
-  if (password2.value === '') {
-    showError(password2, 'Please confirm Password');
-  } else {
-    showSuccess(password2);
-  }
+
+  checkRequired([username, email, password, password2]);
 });
