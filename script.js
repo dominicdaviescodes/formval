@@ -70,6 +70,14 @@ function checkLength(input, min, max) {
   }
 }
 
+// check passwords match
+
+function checkPasswordsMatch(input1, input2) {
+  if (input1.value !== input2.value) {
+    showError(input2, 'Passwords do not match');
+  }
+}
+
 // Get fieldname and capitalize 1st letter
 // take 1st letter make uppercase then add it to the word minus the 1st letter
 
@@ -88,4 +96,5 @@ form.addEventListener('submit', function (e) {
   checkLength(username, 3, 15);
   checkLength(password, 6, 15);
   checkEmail(email);
+  checkPasswordsMatch(password, password2);
 });
