@@ -4,6 +4,7 @@
   --error-color: #e74c3c;
 }
 
+/* stop padding affecting width of elements*/
 * {
   box-sizing: border-box;
 }
@@ -85,6 +86,7 @@ h2 {
   visibility: hidden;
 }
 
+/* if it has error class on it */
 .form-control.error small {
   visibility: visible;
 }
